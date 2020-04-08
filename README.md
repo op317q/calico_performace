@@ -1,13 +1,19 @@
 # deployment script does following thing :-
 
-1 ) It deploys flask and postgress on different node.
+```text
+
+1) It deploys flask and postgress on different node.
 2) you can set the parameter how many pods you want to deploy
 3) it creates  ingress policy to access through ingress controller pod
 4) it creates network policy where postgress is accessed by flask and flask is accessed by outside
 
+```
+
 # Run deploymnet script 
+
 ./deployment.sh
 
+```text
 root@controller:~# kubectl get all -n flask-1
 NAME                              READY   STATUS    RESTARTS   AGE
 pod/flask-1-7855d9d857-kw6jj      1/1     Running   0          7h46m
@@ -35,9 +41,10 @@ NAME                             POD-SELECTOR     AGE
 api-allow-flask-1                app=flask-1      9h
 ingress-network-policy-flask-1   app=postgres-1   9h
 
-
+```
 # run curl command or run the URL in the browser 
 
+```text
 run the curl command 
  curl http://controller-ip/nginx-ingress-flask-1
  
@@ -45,18 +52,24 @@ run the curl command
  
 User 'Jerry Moore MD has address 460 Erin View Jillland, MO 80008 and user got text :-Difficult source board these nature half idea. Write another building enjoy anyone behind. Born close check six good doctor. I writer military option task rich respond public.' is from database
 
+```
 # you can verify in the db 
 
+```text
 kubectl exec -it -n flask-1 postgres-1-6f6c979ff8-dtkn8 /bin/sh
 
 # psql -U postgres
+
+
 psql (9.6.2)
 Type "help" for help.
 
 postgres=# \c
 You are now connected to database "postgres" as user "postgres".
 postgres=# \q
-# ^[[A^[[A^[[B^[[B^C
+
+
+
 # psql -U postgres
 psql (9.6.2)
 Type "help" for help.
@@ -111,5 +124,5 @@ support behavior.+
 (6 rows)
 
 demo_db=#
-
+```
 

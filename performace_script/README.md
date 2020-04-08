@@ -1,10 +1,14 @@
 # Build ipref3 image 
-
+```text
 sudo docker build -t ubuntu-ipref3
 
 and run the deployment script to deploy ipref3 pod
 
+```
+
 # run wrk script 
+
+```text
 
 copy paths.txt from root directory to this directoy 
 
@@ -83,3 +87,5 @@ Server listening on 5201
 and then run the client:- 
 
 iperf3 -P 20 -c 10.108.80.3
+
+```
