@@ -1,3 +1,16 @@
+# Design
+
+```text
+Here I am trying to Design below flow . Here we are trying to test North South traffic and at the same time East West traffic.
+
+For North South , the request will come from ingress controller pod.
+
+for East west traffic , the request will then go to flask app and then flask app to postgress db
+
+```
+
+![Screenshot](Design_flow.tiff)
+
 # deployment script does following thing :-
 
 ```text
