@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import sqlalchemy
 from faker import Faker
 
@@ -14,12 +14,14 @@ db = SQLAlchemy(app)
 db.init_app(app)
 
 
+
 class User(db.Model):
     __tablename__ = 'users'
+    
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String())
-    address = db.Column(db.String())
-    text = db.Column(db.String())
+    name = db.Column('name',db.String(),nullable=False)
+    address = db.Column('address',db.String(),nullable=False)
+    text = db.Column('text',db.String(),nullable=False)
     
     def __init__( self, name, address, text):
         self.name = name
@@ -51,8 +53,10 @@ def test_db():
     db.session.add(u)
     db.session.commit()
     
-    q = db.session.query(User).from_statement(
-    sqlalchemy.text("SELECT * FROM users where name=:n")).params(n = name)
-    user= q.first()
-
-    return "User '{} has address {} and user got text :-{}' is from database".format(user.name, user.address, user.text)
+    value = db.session.query(User).all()
+    #user= q.all()
+    
+    
+    
+    return render_template("user.html", value=value)
+    #return "User '{} has address {} and user got text :-{}' is from database".format(user.name, user.address, user.text)
